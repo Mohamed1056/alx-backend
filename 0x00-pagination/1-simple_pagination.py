@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+"""Task 1: Simple pagination.
+"""
+
 import csv
 import math
-from typing import List
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -11,7 +15,6 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
 
 
 class Server:
-
     """Server class to paginate a database of popular baby names.
     """
     DATA_FILE = "Popular_Baby_Names.csv"
@@ -31,9 +34,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        '''
-        Retrives from a dataset.
-        '''
+        """Retrieves a page of data.
+        """
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
         start, end = index_range(page, page_size)
