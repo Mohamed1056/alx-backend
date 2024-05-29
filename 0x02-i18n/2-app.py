@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
+'''Task 2: Get locale from request
 '''
-simple flask app.
-'''
-
 
 from flask import Flask, render_template, request
 from flask_babel import Babel
@@ -23,18 +21,22 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-@babel.localselector
+@babel.localeselector
 def get_locale() -> str:
-    '''
-    returns the local from a web page.
-    '''
+    """Retrieves the locale for a web page.
+
+    Returns:
+        str: best match
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
 def index() -> str:
-    '''
-    returns a web page.
+    '''default route
+
+    Returns:
+        html: homepage
     '''
     return render_template("2-index.html")
 
